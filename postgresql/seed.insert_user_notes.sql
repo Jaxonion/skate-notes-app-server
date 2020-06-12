@@ -1,0 +1,2 @@
+INSERT INTO notes (user_id, trick_name, leftFootAngle, leftFootUpDown, leftFootRightLeft, rightFootAngle, rightFootUpDown, rightFootRightLeft, note)
+VALUES ('1','Kickflip', '90', '0', '0', '90', '0', '0', 'angle your foot to do a kickflip. Make sure you foot goes off the corner');
