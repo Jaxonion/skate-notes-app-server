@@ -108,6 +108,11 @@ const AuthService = {
                 "rightfootrightleft": rightfootrightleft,
                 "note": note.note
             })
+    },
+    deleteNote(knex, noteId) {
+        return knex('notes')
+            .where('id', noteId)
+            .del()
     }
 }
 

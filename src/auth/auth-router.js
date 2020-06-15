@@ -135,10 +135,11 @@ router
     .post((req, res, next) => {
         let token = req.headers.sessiontoken;
         const { username, noteId, leftFoot, rightFoot, note, trick_name } = req.body;
-        console.log('leftFoot', leftFoot)
+        /*console.log('leftFoot', leftFoot)
         console.log('right Foot', rightFoot)
         console.log('note', note)
-        console.log('req.body', req.body)
+        console.log('req.body', req.body)*/
+        console.log(trick_name)
         if(!leftFoot || !rightFoot || !noteId) {
             res.status(400).json({
                 error: 'Bad request'
@@ -158,7 +159,7 @@ router
                     "leftfootrightleft": leftFoot.rightLeft,
                     "rightfootangle": rightFoot.angle,
                     "rightfootupdown": rightFoot.upDown,
-                    "rightfootrightleft": rightFoot.upDown,
+                    "rightfootrightleft": rightFoot.rightLeft,
                     "note": note
                 }
                 AuthService.updateNote(
@@ -208,6 +209,9 @@ router
 router
     .post('/new', (req, res, next) => {
         const { username, trick_name } = req.body;
+        if(!username || !trick_name) {
+            return res.status(401).end()
+        }
         AuthService.getUserId(
             req.app.get('db'),
             username
@@ -223,6 +227,21 @@ router
                             newNote
                         })
                     })
+            })
+    })
+
+router
+    .post('/delete', (req, res, next) => {
+        const { selectedNoteId } = req.body;
+        console.log(selectedNoteId)
+        AuthService.deleteNote(
+            req.app.get('db'),
+            selectedNoteId
+        )
+            .then(deletedNote => {
+                return res.status(200).json({
+                    message: `note deleted`
+                })
             })
     })
 module.exports = router;
