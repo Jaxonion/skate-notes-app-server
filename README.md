@@ -1,17 +1,43 @@
-# Express Boilerplate!
+## `Skate Notes App Server`
 
-This is a boilerplate project used for starting new projects!
+`Live App:` https://skate-notes.vercel.app/
 
-## Set up
+### `Routes`
 
-Complete the following steps to start a new project (NEW-PROJECT-NAME):
+### `/api/auth/signup`
 
-1. Clone this repository to your local machine `git clone BOILERPLATE-URL NEW-PROJECTS-NAME`
-2. `cd` into the cloned repository
-3. Make a fresh start of the git history for this project with `rm -rf .git && git init`
-4. Install the node dependencies `npm install`
-5. Move the example Environment file to `.env` that will be ignored by git and read by the express server `mv example.env .env`
-6. Edit the contents of the `package.json` to use NEW-PROJECT-NAME instead of `"name": "express-boilerplate",`
+### `POST`
+takes `username`, `email` and `password`.
+verifies that `password` is between 8 and 72 characters and contains a capital letter and symbol.
+verifies that username is not already taken.
+
+### `/api/auth/login`
+
+### `POST`
+takes `username` and `password` and checks if they are correct. If so it uses jsonwebtoken
+to login with 30 minute timeout.
+
+### `GET`
+verifies `session token` if still valid, it will return the username.
+
+### `/api/auth/info`
+verifies `username` and `token`. It then returns all the notes for each trick of that user.
+
+### `/api/auth/save`
+
+### `POST`
+takes the `angle`, `x-index`, and `y-index` of the left and right foot along with the `trick name`, `note`, `username` and `note id`. It finds the note id in the database and updates all the fields.
+
+### `/api/auth/new`
+
+### `POST`
+takes `trick name` and `username`. Creates a new trick for that user with the input `trick name`
+
+### `/api/auth/delete`
+
+### `POST`
+takes `note id`, verifies `token`. Deletes the note with that `note id`.
+
 
 ## Scripts
 
