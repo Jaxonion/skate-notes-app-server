@@ -13,6 +13,8 @@ verifies that username is not already taken.
 
 ### `/api/auth/login`
 
+![](src/pictures/loginpage.PNG)
+
 ### `POST`
 takes `username` and `password` and checks if they are correct. If so it uses jsonwebtoken
 to login with 30 minute timeout.
@@ -21,12 +23,16 @@ to login with 30 minute timeout.
 verifies `session token` if still valid, it will return the username.
 
 ### `/api/auth/info`
+
+### `POST`
 verifies `username` and `token`. It then returns all the notes for each trick of that user.
 
 ### `/api/auth/save`
 
 ### `POST`
 takes the `angle`, `x-index`, and `y-index` of the left and right foot along with the `trick name`, `note`, `username` and `note id`. It finds the note id in the database and updates all the fields.
+
+![](src/pictures/notespage.PNG)
 
 ### `/api/auth/new`
 
