@@ -31,13 +31,25 @@ describe('fail', () => {
 })
 
 describe('successful', () => {
-    const data = {
-
+    const signUpData = {
+        username: 'joe',
+        email: 'joe@gmail.com',
+        password: 'joesephJ1!'
     };
-    it('', () => {
+    it('successful signup', () => {
         return supertest(app)
             .post('api/auth/signup')
-            .send(data)
+            .send(signUpData)
             .expect(201)
+    })
+    const loginData = {
+        username: 'jordan',
+        password: 'Jordan1!'
+    }
+    it('successful login', () => {
+        return supertest(app)
+            .post('/api/auth/login')
+            .send(loginData)
+            .expect(200)
     })
 })
