@@ -226,6 +226,7 @@ router
 
 router
     .delete('/delete/:id', (req, res, next) => {
+        console.log(hey)
         const { selectedNoteId } = req.params.id;
         console.log('id of note to delete is', selectedNoteId)
         AuthService.deleteNote(
