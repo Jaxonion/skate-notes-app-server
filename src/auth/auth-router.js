@@ -6,7 +6,7 @@ const router = express.Router();
 const AuthService = require('./auth-server');
 const { JWT_SECRET, JWT_EXPIRY, DATABASE_URL } = require('../config');
 
-const app = express()
+const app = express();
 
 
 
@@ -70,7 +70,7 @@ router
                 username: decoded.username
             })
         })
-    })
+    });
 
 router
     .route('/signup')
@@ -128,17 +128,13 @@ router
                             })
                     })
             })
-    })
+    });
 
 router
     .route('/save')
-    .post((req, res, next) => {
+    .put((req, res, next) => {
         let token = req.headers.sessiontoken;
         const { username, noteId, leftFoot, rightFoot, note, trick_name } = req.body;
-        /*console.log('leftFoot', leftFoot)
-        console.log('right Foot', rightFoot)
-        console.log('note', note)
-        console.log('req.body', req.body)*/
         console.log(trick_name)
         if(!leftFoot || !rightFoot || !noteId) {
             res.status(400).json({
@@ -174,7 +170,7 @@ router
                         })
                     })
             })
-    })
+    });
 
 router
     .post('/info', (req, res, next) => {
@@ -200,12 +196,10 @@ router
                             notes
                         })
                     })
-                /*return res.status(200).json({
-                    response
-                })*/
             })
 
-    })
+    });
+
 router
     .post('/new', (req, res, next) => {
         const { username, trick_name } = req.body;
@@ -228,12 +222,12 @@ router
                         })
                     })
             })
-    })
+    });
 
 router
-    .post('/delete', (req, res, next) => {
-        const { selectedNoteId } = req.body;
-        console.log(selectedNoteId)
+    .delete('/delete/:id', (req, res, next) => {
+        const { selectedNoteId } = req.params.id;
+        console.log('id of note to delete is', selectedNoteId)
         AuthService.deleteNote(
             req.app.get('db'),
             selectedNoteId
@@ -243,5 +237,6 @@ router
                     message: `note deleted`
                 })
             })
-    })
+    });
+
 module.exports = router;
