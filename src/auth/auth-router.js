@@ -226,9 +226,7 @@ router
 
 router
     .delete('/delete/:id', (req, res, next) => {
-        console.log(hey)
-        const { selectedNoteId } = req.params.id;
-        console.log('id of note to delete is', selectedNoteId)
+        const selectedNoteId = req.params.id;
         AuthService.deleteNote(
             req.app.get('db'),
             selectedNoteId
@@ -240,4 +238,8 @@ router
             })
     });
 
+router
+    .get('/hey', (req, res, next) => {
+        console.log('hey')
+    })
 module.exports = router;
