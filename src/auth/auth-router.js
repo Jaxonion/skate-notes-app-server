@@ -238,8 +238,5 @@ router
             })
     });
 
-router
-    .get('/hey', (req, res, next) => {
-        console.log('hey')
-    })
+
 module.exports = router;
