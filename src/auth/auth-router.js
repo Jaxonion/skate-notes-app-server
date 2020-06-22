@@ -14,7 +14,6 @@ router
     .route('/login')
     .post((req, res, next) => {
         const { username, password } = req.body;
-        console.log(username, password)
         if(!username || !password) {
             res.status(401).json({
                 error: 'missing field'
@@ -135,7 +134,6 @@ router
     .put((req, res, next) => {
         let token = req.headers.sessiontoken;
         const { username, noteId, leftFoot, rightFoot, note, trick_name } = req.body;
-        console.log(trick_name)
         if(!leftFoot || !rightFoot || !noteId) {
             res.status(400).json({
                 error: 'Bad request'
@@ -175,7 +173,6 @@ router
 router
     .post('/info', (req, res, next) => {
         const { username } = req.body;
-        console.log(username)
         if (!username) {
             return res.status(400).json({
                 error: 'no credentials'
@@ -186,7 +183,6 @@ router
             username
         )
             .then(response => {
-                //console.log(response[0].id)
                 AuthService.getUserNotes(
                     req.app.get('db'),
                     response[0].id
